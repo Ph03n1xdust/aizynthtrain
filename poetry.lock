@@ -39,7 +39,7 @@ frozenlist = ">=1.1.0"
 
 [[package]]
 name = "aizynthfinder"
-version = "3.4.0"
+version = "3.7.0"
 description = "Retrosynthetic route finding using neural network guided Monte-Carlo tree search"
 category = "main"
 optional = false
@@ -71,7 +71,7 @@ tqdm = ">=4.42.1,<5.0.0"
 
 [package.source]
 type = "url"
-url = "https://github.com/MolecularAI/aizynthfinder/archive/refs/tags/v3.4.0.tar.gz"
+url = "https://github.com/MolecularAI/aizynthfinder/archive/refs/tags/v3.7.0.tar.gz"
 [[package]]
 name = "alabaster"
 version = "0.7.12"
