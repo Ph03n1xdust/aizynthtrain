@@ -62,6 +62,10 @@ def split_data(
     :params val_indices: the list of add the indices of the validation partition
     :params test_indices: the list of add the indices of the testing partition
     """
+    if len(group_data)==1:
+        train_indices.extend(group_data.index.to_list())
+        return
+    
     train_arr, val_arr = train_test_split(
         group_data.index, train_size=train_frac, random_state=random_seed, shuffle=True
     )
