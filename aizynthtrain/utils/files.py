@@ -84,7 +84,10 @@ def create_csv_batches(filename: str, nbatches: int) -> List[Tuple[int, int, int
     """
     file_size = nlines(filename) - 1
     chunk_size = math.ceil(file_size / nbatches)
-    return [(idx, idx * chunk_size, (idx + 1) * chunk_size) for idx in range(nbatches)]
+    batches = [(idx, idx * chunk_size, (idx + 1) * chunk_size) for idx in range(nbatches-2) ]
+    batches.append((nbatches-2,(nbatches-2)*chunk_size,(nbatches-2)*chunk_size+math.ceil((file_size-(nbatches-2)*chunk_size)/2)))
+    batches.append((nbatches-1,(nbatches-2)*chunk_size+math.ceil((file_size-(nbatches-2)*chunk_size)/2),file_size))
+    return batches
 
 
 def nlines(filename: str) -> int:
