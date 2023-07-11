@@ -4,6 +4,7 @@ from typing import List, Any, Tuple
 
 import numpy as np
 
+import tensorflow as tf
 from tensorflow.config import list_physical_devices
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
@@ -114,7 +115,7 @@ def train_keras_model(
     :param epochs: the number of epochs to use
     """
     print(f"Available GPUs: {list_physical_devices('GPU')}")
-    adam = Adam(learning_rate=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0)
+    adam = tf.keras.optimizers.legacy.Adam(learning_rate=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0)
 
     model.compile(
         optimizer=adam,
