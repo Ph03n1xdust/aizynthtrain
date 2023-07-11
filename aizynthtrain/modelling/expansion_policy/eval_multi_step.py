@@ -37,7 +37,7 @@ def _eval_finding(
     config: ExpansionModelEvaluationConfig, finder_config_path: str
 ) -> None:
     output_path = config.filename("finder_output").replace(".hdf5", "_finding.hdf5")
-    _run_finder(config.target_smiles, finder_config_path, output_path)
+    _run_finder(config.target_smiles, finder_config_path, output_path, config.n_cores)
 
     finder_output = pd.read_hdf(output_path, "table")
     stats = {
@@ -63,7 +63,7 @@ def _eval_recovery(
         fileobj.write("\n".join(smiles))
 
     output_path = config.filename("finder_output").replace(".hdf5", "_recovery.hdf5")
-    _run_finder(smiles_filename, finder_config_path, output_path)
+    _run_finder(smiles_filename, finder_config_path, output_path, config.n_cores)
 
     finder_output = pd.read_hdf(output_path, "table")
     stats = defaultdict(list)
@@ -83,8 +83,9 @@ def _eval_recovery(
 
 
 def _run_finder(
-    smiles_filename: str, finder_config_path: str, output_path: str
+    smiles_filename: str, finder_config_path: str, output_path: str, n_cores: int
 ) -> None:
+    
     subprocess.run(
         [
             "aizynthcli",
@@ -94,6 +95,8 @@ def _run_finder(
             finder_config_path,
             "--output",
             output_path,
+            "--nproc",
+            str(n_cores)
         ]
     )
 

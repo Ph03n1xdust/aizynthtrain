@@ -143,7 +143,7 @@ class ExpansionModelPipelineConfig(BaseModel, _FilenameMixin):
 
 class ExpansionModelEvaluationConfig(BaseModel, _FilenameMixin):
     """Configuration class for evaluation of expansion model"""
-
+    n_cores: int = 1
     stock_for_finding: str = ""
     stock_for_recovery: str = ""
     properties_for_finding: Dict[str, Any] = Field(
